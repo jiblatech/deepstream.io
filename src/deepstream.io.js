@@ -24,6 +24,8 @@ const pkg = require('../package.json')
 const EventEmitter = require('events').EventEmitter
 const EOL = require('os').EOL
 
+
+
 const STATES = C.STATES
 
 module.exports = class Deepstream extends EventEmitter {
@@ -72,6 +74,65 @@ module.exports = class Deepstream extends EventEmitter {
       ]
     }
     this._currentState = this._stateMachine.init
+
+
+    // Rest endpoints to inspect server content and messages (Add by Jibla Technologies)
+
+    const fastify = require('fastify')({
+      logger: true
+    })
+    
+    fastify.get('/events', async (request, reply) => {
+      reply.type('application/json').code(200)
+
+      return Array.from(this._eventHandler._subscriptionRegistry._subscriptions.values()).map( e => {
+        
+        return {
+          name: e.name,
+          sockets: Array.from(e.sockets).map( socket => ({ uuid: socket.uuid, user: socket.user}))
+        }
+      })
+      
+    })
+
+    
+    fastify.get('/rpc', async (request, reply) => {
+      reply.type('application/json').code(200)
+
+      return Array.from(this._rpcHandler._subscriptionRegistry._subscriptions.values()).map( e => {
+        
+        return {
+          name: e.name,
+          sockets: Array.from(e.sockets).map( socket => ({ uuid: socket.uuid, user: socket.user}))
+        }
+      })
+      
+    })
+
+    fastify.get('/records', async (request, reply) => {
+      reply.type('application/json').code(200)
+
+       
+
+      return {
+        records: Object.entries(this._options.cache._data).reduce((accumulator, current) => {    
+          accumulator[current[0]] = current[1]._d
+          return accumulator
+        }, {}),
+        subscribers: Array.from(this._recordHandler._subscriptionRegistry._subscriptions.values()).map( e => {
+        
+          return {
+            name: e.name,
+            sockets: Array.from(e.sockets).map( socket => ({ uuid: socket.uuid, user: socket.user}))
+          }
+        })
+      }
+    })
+    
+    fastify.listen(3090, (err, address) => {
+      if (err) throw err
+      fastify.log.info(`Inspect http server listening on ${address}`)
+    })
   }
 
 /**

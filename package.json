@@ -39,6 +39,7 @@
     "commander": "^2.11.0",
     "content-type": "^1.0.2",
     "deepstream.io-service": "latest",
+    "fastify": "^1.11.0",
     "glob": "^7.1.2",
     "http-shutdown": "^1.2.0",
     "http-status": "^1.0.1",
@@ -46,7 +47,7 @@
     "mkdirp": "^0.5.1",
     "needle": "^2.0.0",
     "original-fs": "^1.0.0",
-    "uws": "10.148.1"
+    "uws": "^8.14.1"
   },
   "devDependencies": {
     "async": "^2.5.0",

@@ -227,6 +227,8 @@ module.exports = class SubscriptionRegistry {
       this._options.message.send(message.topic, message)
     }
 
+    console.log(this._subscriptions)
+    
     const subscription = this._subscriptions.get(name)
 
     if (!subscription) {

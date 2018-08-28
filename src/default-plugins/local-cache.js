@@ -9,6 +9,8 @@ class LocalCache {
 
   set (key, value, callback) {
     this._data[key] = value
+
+    console.log(this._data)
     callback(null)
   }
 
