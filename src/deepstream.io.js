@@ -79,7 +79,7 @@ module.exports = class Deepstream extends EventEmitter {
     // Rest endpoints to inspect server content and messages (Add by Jibla Technologies)
 
     const fastify = require('fastify')({
-      logger: true
+      logger: false
     })
     
     fastify.get('/events', async (request, reply) => {
