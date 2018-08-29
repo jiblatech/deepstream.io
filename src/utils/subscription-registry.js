@@ -226,9 +226,7 @@ module.exports = class SubscriptionRegistry {
     if (socket !== C.SOURCE_MESSAGE_CONNECTOR) {
       this._options.message.send(message.topic, message)
     }
-
-    console.log(this._subscriptions)
-    
+        
     const subscription = this._subscriptions.get(name)
 
     if (!subscription) {
