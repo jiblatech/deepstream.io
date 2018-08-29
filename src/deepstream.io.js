@@ -129,7 +129,8 @@ module.exports = class Deepstream extends EventEmitter {
       }
     })
     
-    fastify.listen(3090, (err, address) => {
+    
+    fastify.listen(global.deepstreamCLI.restPort || 3090, (err, address) => {
       if (err) throw err
       fastify.log.info(`Inspect http server listening on ${address}`)
     })

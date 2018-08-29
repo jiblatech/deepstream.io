@@ -9,3 +9,11 @@ http://localhost:3090/events
 
 http://localhost:3090/rpc
 ```
+
+To start rest server on a different port use:
+
+```bash
+bin/deepstream start \
+                --port 6021 \
+                --rest-port 3091
+```

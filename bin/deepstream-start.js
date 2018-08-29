@@ -15,11 +15,12 @@ module.exports = function (program) {
     .option('--host <host>', 'host for the websocket server')
     .option('--port <port>', 'port for the websocket server', parseInteger.bind(null, '--port'))
     .option('--http-host <host>', 'host for the HTTP server')
-    .option('--http-port <port>', 'port for the HTTP server', parseInteger.bind(null, '--http-port'))
+    .option('--http-port <port>', 'port for the HTTP server', parseInteger.bind(null, '--http-port'))    
     .option('--disable-auth', 'Force deepstream to use "none" auth type')
     .option('--disable-permissions', 'Force deepstream to use "none" permissions')
     .option('--log-level <level>', 'Log messages with this level and above', parseLogLevel)
     .option('--colors [true|false]', 'Enable or disable logging with colors', parseBoolean.bind(null, '--colors'))
+    .option('--rest-port <port>', 'port for the Rest inspection server', parseInteger.bind(null, '--rest-port'))
     .action(action)
 }
 
