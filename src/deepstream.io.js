@@ -20,11 +20,11 @@ const LockRegistry = require('./cluster/lock-registry')
 const DependencyInitialiser = require('./utils/dependency-initialiser')
 const C = require('./constants/constants')
 const pkg = require('../package.json')
-
+const prune = require('json-prune');
 const EventEmitter = require('events').EventEmitter
 const EOL = require('os').EOL
 
-
+ const { inspect }= require('util')
 
 const STATES = C.STATES
 
@@ -82,6 +82,26 @@ module.exports = class Deepstream extends EventEmitter {
       logger: false
     })
     
+
+    fastify.get('/config', async (request, reply) => {
+
+      // To avoid 'TypeError: Converting circular structure to JSON' errors
+      
+     
+     
+
+      reply
+      .type('application/json')
+      .code(200)
+      .serializer(prune)
+
+
+      
+      return this._options
+      
+    })
+
+
     fastify.get('/events', async (request, reply) => {
       reply.type('application/json').code(200)
 

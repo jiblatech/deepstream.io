@@ -8,6 +8,8 @@ http://localhost:3090/records
 http://localhost:3090/events
 
 http://localhost:3090/rpc
+
+http://localhost:3090/config
 ```
 
 To start rest server on a different port use:
