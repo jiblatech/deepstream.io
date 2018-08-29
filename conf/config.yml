@@ -5,7 +5,7 @@ showLogo: true
 logLevel: INFO
 # Directory where all plugins reside
 #libDir: ../lib
-
+serverName: "yoohoo"
 # Connectivity
 # webfacing URL under which this client is reachable. Used for loadbalancing / failover
 externalUrl: null

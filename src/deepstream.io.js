@@ -86,18 +86,17 @@ module.exports = class Deepstream extends EventEmitter {
     fastify.get('/config', async (request, reply) => {
 
       // To avoid 'TypeError: Converting circular structure to JSON' errors
-      
-     
-     
+
 
       reply
       .type('application/json')
       .code(200)
       .serializer(prune)
-
-
-      
-      return this._options
+ 
+      return {
+        config_file: this._configFile,
+        options: this._options
+      }
       
     })
 
