@@ -17,5 +17,6 @@ To start rest server on a different port use:
 ```bash
 bin/deepstream start \
                 --port 6021 \
+                --http-port 8087 \
                 --rest-port 3091
 ```
