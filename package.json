@@ -38,6 +38,7 @@
     "colors": "^1.1.2",
     "commander": "^2.11.0",
     "content-type": "^1.0.2",
+    "cors": "^2.8.4",
     "deepstream.io-service": "latest",
     "fastify": "^1.11.0",
     "glob": "^7.1.2",

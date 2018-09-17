@@ -23,6 +23,7 @@ const pkg = require('../package.json')
 const prune = require('json-prune');
 const EventEmitter = require('events').EventEmitter
 const EOL = require('os').EOL
+const cors = require('cors')
 
  const { inspect }= require('util')
 
@@ -82,6 +83,8 @@ module.exports = class Deepstream extends EventEmitter {
       logger: false
     })
     
+    fastify.use(cors())
+    fastify.options('*', (request, reply) => { reply.send() })
 
     fastify.get('/config', async (request, reply) => {
 
